@@ -11,8 +11,7 @@ import { AppService } from './app.service';
       isGlobal: true,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'public'), // путь до директории с вашими статическими файлами
-      serveRoot: '/', // корень для сервирования файлов
+      rootPath: join(__dirname, '..', 'public'),
     }),
   ],
   controllers: [AppController],
