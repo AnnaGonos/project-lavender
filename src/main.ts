@@ -1,15 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Получите ConfigService
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+
   const configService = app.get(ConfigService);
-
-  // Узнайте порт из переменных окружения
-  const PORT = configService.get<number>('PORT') || 3000; // Установите значение по умолчанию
+  const PORT = configService.get<number>('PORT') || 3000;
 
   await app.listen(PORT);
   console.log(`Application is running on: http://localhost:${PORT}`);

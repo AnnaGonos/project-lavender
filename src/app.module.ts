@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Делаем ConfigModule глобальным
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],
